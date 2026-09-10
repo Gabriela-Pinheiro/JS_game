@@ -51,13 +51,13 @@ const MAX_NUMBER_WINS = 3;
 const PLAYER = `
   O
  \\|/
- / \\
+ / \\ WINNEEEER
 `;
 
 const ROBOT = `
  [o_o]
  \\|_|/
-  / \\
+  / \\ WINNEEEER
 `;
 
 //3. functions definition sextion
