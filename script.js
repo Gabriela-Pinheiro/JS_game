@@ -72,13 +72,13 @@ const farewellMessage = (pcWinner, userWins) => {
         messageShower.showMessage("alert", "You Loooser! I am AI-nvencible.");
         console.log(ROBOT);
     } else if(userWins) {
-        messageShower.showMessage("alert", "Next time we'll see  who wins.")
+        messageShower.showMessage("alert", "You winner! Next time we'll see  who wins.")
         console.log(PLAYER);
     }
 }
 
 const giveInstructions = () => {
-    messageShower.showMessage("alert", "To open your console: press f12 > navigate to top line where you see 'Conosle' written > click on it - if not already there. Game will be played typing on dialog boxes and results displayed in console after each round. You shall follow the instrcution given.");
+    messageShower.showMessage("alert", "To open your console: press f12 > navigate to top line where you see 'Conosle' written > click on it - if not already there. Game will be played typing on dialog boxes and results are displayed in console after each round. You shall follow instructions given.");
     
     console.log("Best of luck - you will need it");
 }
