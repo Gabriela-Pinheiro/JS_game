@@ -49,15 +49,17 @@ const messageShower = new MessageShower();
 const MAX_NUMBER_WINS = 3;
 
 const PLAYER = `
+You WIN\n
   O
  \\|/
- / \\ WINNEEEER
+ / \\ 
 `;
 
 const ROBOT = `
- [o_o]
- \\|_|/
-  / \\ WINNEEEER
+AI WINS\n
+[o_o]
+\\|_|/
+ / \\
 `;
 
 //3. functions definition sextion
@@ -115,8 +117,7 @@ function getPlayerSelection() {
         }
 
         normalizedPlayerSelection = trimString(playerSelection);
-        console.log(`player ${playerSelection}`);
-
+        
         playersChoice = returnPlayerSelectionChoice(normalizedPlayerSelection);
         if (playersChoice === undefined) {
            messageShower.showMessage("alert", `Nah! Game only works with: ${Choice.Rock}, ${Choice.Paper} or ${Choice.Scissors} ⮧`);
@@ -167,8 +168,9 @@ function game() {
             roundResults.push(roundResult);
 
             gameResult(gameScore, roundResult);
-
-            console.log(`player ${gameScore.playerScore} x pc ${gameScore.computerScore}`);
+            console.log(`Round ${roundResults.length}: ${roundResult} \n` + `player ${playerSelection} x pc ${computerSelection}\n` + `player ${gameScore.playerScore} x pc ${gameScore.computerScore}`);
+            // console.info(`player ${playerSelection} x pc ${computerSelection}`);
+            // console.info(`player ${gameScore.playerScore} x pc ${gameScore.computerScore}`);
 
         } catch (error) {
             messageShower.showMessage("alert", "Oh no! You finished me, just a looser would do that");
@@ -179,7 +181,6 @@ function game() {
     const aiWins = gameScore.computerScore >= MAX_NUMBER_WINS;
     const userWins = gameScore.playerScore >= MAX_NUMBER_WINS;
     farewellMessage(aiWins, userWins);
-
 }
 
 
