@@ -1,7 +1,6 @@
 //1. classes definition section
 class MessageShower {
     //despite this class not being exacltly required, for the purpose of learning it was created
-
     showMessage(type, message) {
         if(type === "alert"){
             return alert(message);
@@ -16,20 +15,16 @@ class MessageShower {
 }
 
 class GameScore{
-
     constructor() {
         this.playerScore = 0;
         this.computerScore = 0;
     }
-
     awardPlayer() {
         this.playerScore++;
     }
-
     awardComputer() {
         this.computerScore++;
     }
-    
 }
 
 const Choice = Object.freeze({
@@ -71,10 +66,10 @@ const welcomeMessage = () => {
 
 const farewellMessage = (pcWinner, userWins) => {
     if(pcWinner) {
-        messageShower.showMessage("alert", "You Loooser! I am AI-nvencible.");
+        console.log("You Loooser! I am AI-nvencible.");
         console.log(ROBOT);
     } else if(userWins) {
-        messageShower.showMessage("alert", "You winner! Next time we'll see  who wins.")
+        console.log("You winner! Next time we'll see  who wins.")
         console.log(PLAYER);
     }
 }
@@ -169,8 +164,6 @@ function game() {
 
             gameResult(gameScore, roundResult);
             console.log(`Round ${roundResults.length}: ${roundResult} \n` + `player ${playerSelection} x pc ${computerSelection}\n` + `player ${gameScore.playerScore} x pc ${gameScore.computerScore}`);
-            // console.info(`player ${playerSelection} x pc ${computerSelection}`);
-            // console.info(`player ${gameScore.playerScore} x pc ${gameScore.computerScore}`);
 
         } catch (error) {
             messageShower.showMessage("alert", "Oh no! You finished me, just a looser would do that");
@@ -182,7 +175,6 @@ function game() {
     const userWins = gameScore.playerScore >= MAX_NUMBER_WINS;
     farewellMessage(aiWins, userWins);
 }
-
 
 // execution
 welcomeMessage();
