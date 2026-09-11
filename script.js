@@ -36,7 +36,8 @@ const Choice = Object.freeze({
 const RoundResult = Object.freeze({
     Draw: "draw",
     Loss: "loss",
-    Win: "win"
+    Win: "win",
+    Cancelled: "cancelled"
 });
 
 //2. variables
@@ -75,9 +76,11 @@ const farewellMessage = (pcWinner, userWins) => {
 }
 
 const giveInstructions = () => {
-    messageShower.showMessage("alert", "To open your console: press f12 > navigate to top line where you see 'Conosle' written > click on it - if not already there. Game will be played typing on dialog boxes and results are displayed in console after each round. You shall follow instructions given.");
+    messageShower.showMessage("alert", "To open your console:\n1. Press f12\n2. Navigate to top line where you see 'Conosle' written\n3. Click on it - a line should be under it.\nGame will be played typing on dialog boxes and results are displayed in console after each round.\nYou shall follow instructions given.");
     
     console.log("Best of luck - you will need it");
+
+    messageShower.showMessage("confirm", "If you DO NOT have 'Best of Luck' already printed on your console please:\n1. Press OK\n2. Press ESC twice\n3. Reload your page by pressing F5.\nSorry for the inconvenience.");
 }
 
 //3.3 game section
@@ -108,7 +111,8 @@ function getPlayerSelection() {
         const playerSelection = messageShower.showMessage("prompt", `${Choice.Rock}, ${Choice.Paper} or ${Choice.Scissors}? ⮧`);
         
         if(playerSelection == null) {
-            throw new Error("Execution aborted");
+            console.info("Game cancelled.");
+            return null;
         }
 
         normalizedPlayerSelection = trimString(playerSelection);
@@ -159,11 +163,15 @@ function game() {
             const computerSelection = computerPlay();
             const playerSelection = getPlayerSelection();
 
-            const roundResult = playRound(computerSelection, playerSelection);
-            roundResults.push(roundResult);
+            if(playerSelection !== null) {
+                const roundResult = playRound(computerSelection, playerSelection);
+                roundResults.push(roundResult);
 
-            gameResult(gameScore, roundResult);
-            console.log(`Round ${roundResults.length}: ${roundResult} \n` + `player ${playerSelection} x pc ${computerSelection}\n` + `player ${gameScore.playerScore} x pc ${gameScore.computerScore}`);
+                gameResult(gameScore, roundResult);
+                console.log(`Round ${roundResults.length}: ${roundResult} \n` + `player ${playerSelection} x pc ${computerSelection}\n` + `player ${gameScore.playerScore} x pc ${gameScore.computerScore}`);
+            } else {
+                hasError = true;
+            }           
 
         } catch (error) {
             messageShower.showMessage("alert", "Oh no! You finished me, just a looser would do that");
