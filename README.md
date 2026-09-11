@@ -1,5 +1,5 @@
 # JS_game
 
-[test me](https://gabriela-pinheiro.github.io/JS_game/index.html)
+[Rock Paper Scissors](https://gabriela-pinheiro.github.io/JS_game/)
 
 
